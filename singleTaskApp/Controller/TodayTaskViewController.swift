@@ -90,13 +90,10 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
     func loadData(){
         db.collection("Tasks").order(by: "date").addSnapshotListener { [self] (snapShot, error) in
             self.tasks = [] //初期化しておく
-            
-            
             if error != nil{
                 print(error.debugDescription)
                 return
             }
-            
             if let snapShotDoc = snapShot?.documents{
                 //ここまではOK
                 //snapshotはある一つのコレクション

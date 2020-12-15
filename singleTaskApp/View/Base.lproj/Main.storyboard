@@ -128,6 +128,7 @@
                     <connections>
                         <outlet property="calendar" destination="QyW-FX-RcZ" id="v7W-T0-0aO"/>
                         <outlet property="tableView" destination="L02-27-hZe" id="VyA-mq-yFD"/>
+                        <outlet property="taskTextField" destination="3FZ-dx-wti" id="gQs-E7-NsS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ANq-a3-Bog" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
