@@ -3,27 +3,61 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7251DA9BC6797FF3673B6898 /* Pods_singleTaskApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A2AA27C644674465234E17 /* Pods_singleTaskApp.framework */; };
 		D1BC5B5825778D9800F4B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B5725778D9800F4B1E6 /* AppDelegate.swift */; };
 		D1BC5B5A25778D9800F4B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B5925778D9800F4B1E6 /* SceneDelegate.swift */; };
-		D1BC5B5C25778D9800F4B1E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B5B25778D9800F4B1E6 /* ViewController.swift */; };
 		D1BC5B5F25778D9800F4B1E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1BC5B5D25778D9800F4B1E6 /* Main.storyboard */; };
 		D1BC5B6125778D9900F4B1E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1BC5B6025778D9900F4B1E6 /* Assets.xcassets */; };
 		D1BC5B6425778D9900F4B1E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1BC5B6225778D9900F4B1E6 /* LaunchScreen.storyboard */; };
+		D1BC5B6E25778F7800F4B1E6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B6D25778F7800F4B1E6 /* TabBarController.swift */; };
+		D1BC5B772577901300F4B1E6 /* TimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B762577901300F4B1E6 /* TimerController.swift */; };
+		D1BC5B7B257793F200F4B1E6 /* HowToUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B7A257793F200F4B1E6 /* HowToUseViewController.swift */; };
+		D1BC5B842577ABD100F4B1E6 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B832577ABD100F4B1E6 /* CalendarViewController.swift */; };
+		D1BC5B9E2579A47D00F4B1E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1BC5B9D2579A47D00F4B1E6 /* GoogleService-Info.plist */; };
+		D1BC5BA12579A68700F4B1E6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BA02579A68700F4B1E6 /* RegisterViewController.swift */; };
+		D1BC5BA52579A69900F4B1E6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BA42579A69900F4B1E6 /* SignUpViewController.swift */; };
+		D1BC5BA82579A6B700F4B1E6 /* ChechPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BA72579A6B700F4B1E6 /* ChechPermission.swift */; };
+		D1BC5BDE257B3BCF00F4B1E6 /* SendToDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BDD257B3BCF00F4B1E6 /* SendToDBModel.swift */; };
+		D1BC5BF8257F19E500F4B1E6 /* TodayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BF7257F19E500F4B1E6 /* TodayTaskViewController.swift */; };
+		D1E939A5257F5B8A009B9167 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939A4257F5B8A009B9167 /* LoginViewController.swift */; };
+		D1E939A8257F5D8F009B9167 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939A7257F5D8F009B9167 /* MenuViewController.swift */; };
+		D1E939AB257F6A88009B9167 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939AA257F6A88009B9167 /* Task.swift */; };
+		D1E939B3257F789A009B9167 /* TaskCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939B1257F789A009B9167 /* TaskCellTableViewCell.swift */; };
+		D1E939B4257F789A009B9167 /* TaskCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1E939B2257F789A009B9167 /* TaskCellTableViewCell.xib */; };
+		D1E939B725804BC7009B9167 /* LetsStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939B625804BC7009B9167 /* LetsStartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BA224C18DD766BBB81D9F8 /* Pods-singleTaskApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-singleTaskApp.debug.xcconfig"; path = "Target Support Files/Pods-singleTaskApp/Pods-singleTaskApp.debug.xcconfig"; sourceTree = "<group>"; };
+		95A2AA27C644674465234E17 /* Pods_singleTaskApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_singleTaskApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1BC5B5425778D9800F4B1E6 /* singleTaskApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = singleTaskApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1BC5B5725778D9800F4B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1BC5B5925778D9800F4B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D1BC5B5B25778D9800F4B1E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D1BC5B5E25778D9800F4B1E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1BC5B6025778D9900F4B1E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1BC5B6325778D9900F4B1E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1BC5B6525778D9900F4B1E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1BC5B6D25778F7800F4B1E6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D1BC5B762577901300F4B1E6 /* TimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerController.swift; sourceTree = "<group>"; };
+		D1BC5B7A257793F200F4B1E6 /* HowToUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseViewController.swift; sourceTree = "<group>"; };
+		D1BC5B832577ABD100F4B1E6 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D1BC5B9D2579A47D00F4B1E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1BC5BA02579A68700F4B1E6 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D1BC5BA42579A69900F4B1E6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		D1BC5BA72579A6B700F4B1E6 /* ChechPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChechPermission.swift; sourceTree = "<group>"; };
+		D1BC5BDD257B3BCF00F4B1E6 /* SendToDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToDBModel.swift; sourceTree = "<group>"; };
+		D1BC5BF7257F19E500F4B1E6 /* TodayTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTaskViewController.swift; sourceTree = "<group>"; };
+		D1E939A4257F5B8A009B9167 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D1E939A7257F5D8F009B9167 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		D1E939AA257F6A88009B9167 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		D1E939B1257F789A009B9167 /* TaskCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCellTableViewCell.swift; sourceTree = "<group>"; };
+		D1E939B2257F789A009B9167 /* TaskCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCellTableViewCell.xib; sourceTree = "<group>"; };
+		D1E939B625804BC7009B9167 /* LetsStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetsStartViewController.swift; sourceTree = "<group>"; };
+		F441E5C7A48B3C14BDFAF6E2 /* Pods-singleTaskApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-singleTaskApp.release.xcconfig"; path = "Target Support Files/Pods-singleTaskApp/Pods-singleTaskApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +65,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7251DA9BC6797FF3673B6898 /* Pods_singleTaskApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57D81A252AD4D0BD74E3115C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95A2AA27C644674465234E17 /* Pods_singleTaskApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D1BC5B4B25778D9800F4B1E6 = {
 			isa = PBXGroup;
 			children = (
 				D1BC5B5625778D9800F4B1E6 /* singleTaskApp */,
 				D1BC5B5525778D9800F4B1E6 /* Products */,
+				EE760BD8B6F096024B81DE34 /* Pods */,
+				57D81A252AD4D0BD74E3115C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +101,71 @@
 		D1BC5B5625778D9800F4B1E6 /* singleTaskApp */ = {
 			isa = PBXGroup;
 			children = (
-				D1BC5B5725778D9800F4B1E6 /* AppDelegate.swift */,
-				D1BC5B5925778D9800F4B1E6 /* SceneDelegate.swift */,
-				D1BC5B5B25778D9800F4B1E6 /* ViewController.swift */,
-				D1BC5B5D25778D9800F4B1E6 /* Main.storyboard */,
-				D1BC5B6025778D9900F4B1E6 /* Assets.xcassets */,
-				D1BC5B6225778D9900F4B1E6 /* LaunchScreen.storyboard */,
+				D1BC5B7125778FBE00F4B1E6 /* Model */,
+				D1BC5B7325778FD500F4B1E6 /* View */,
+				D1BC5B7425778FDE00F4B1E6 /* Controller */,
 				D1BC5B6525778D9900F4B1E6 /* Info.plist */,
+				D1BC5B9D2579A47D00F4B1E6 /* GoogleService-Info.plist */,
+				D1E939B1257F789A009B9167 /* TaskCellTableViewCell.swift */,
+				D1E939B2257F789A009B9167 /* TaskCellTableViewCell.xib */,
 			);
 			path = singleTaskApp;
+			sourceTree = "<group>";
+		};
+		D1BC5B7125778FBE00F4B1E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D1BC5B5925778D9800F4B1E6 /* SceneDelegate.swift */,
+				D1BC5B5725778D9800F4B1E6 /* AppDelegate.swift */,
+				D1BC5BA72579A6B700F4B1E6 /* ChechPermission.swift */,
+				D1BC5BDD257B3BCF00F4B1E6 /* SendToDBModel.swift */,
+				D1E939AA257F6A88009B9167 /* Task.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1BC5B7325778FD500F4B1E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D1BC5B5D25778D9800F4B1E6 /* Main.storyboard */,
+				D1BC5B6225778D9900F4B1E6 /* LaunchScreen.storyboard */,
+				D1BC5B6025778D9900F4B1E6 /* Assets.xcassets */,
+				D1BC5B7D257793FA00F4B1E6 /* SettingsTab */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1BC5B7425778FDE00F4B1E6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D1BC5B762577901300F4B1E6 /* TimerController.swift */,
+				D1BC5B832577ABD100F4B1E6 /* CalendarViewController.swift */,
+				D1BC5B6D25778F7800F4B1E6 /* TabBarController.swift */,
+				D1BC5BA02579A68700F4B1E6 /* RegisterViewController.swift */,
+				D1BC5BA42579A69900F4B1E6 /* SignUpViewController.swift */,
+				D1BC5BF7257F19E500F4B1E6 /* TodayTaskViewController.swift */,
+				D1E939A4257F5B8A009B9167 /* LoginViewController.swift */,
+				D1E939A7257F5D8F009B9167 /* MenuViewController.swift */,
+				D1E939B625804BC7009B9167 /* LetsStartViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D1BC5B7D257793FA00F4B1E6 /* SettingsTab */ = {
+			isa = PBXGroup;
+			children = (
+				D1BC5B7A257793F200F4B1E6 /* HowToUseViewController.swift */,
+			);
+			path = SettingsTab;
+			sourceTree = "<group>";
+		};
+		EE760BD8B6F096024B81DE34 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				04BA224C18DD766BBB81D9F8 /* Pods-singleTaskApp.debug.xcconfig */,
+				F441E5C7A48B3C14BDFAF6E2 /* Pods-singleTaskApp.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1BC5B6825778D9900F4B1E6 /* Build configuration list for PBXNativeTarget "singleTaskApp" */;
 			buildPhases = (
+				A2C996637603B20265812CB0 /* [CP] Check Pods Manifest.lock */,
 				D1BC5B5025778D9800F4B1E6 /* Sources */,
 				D1BC5B5125778D9800F4B1E6 /* Frameworks */,
 				D1BC5B5225778D9800F4B1E6 /* Resources */,
+				00AC39EB0F6F277A400418CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +228,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1BC5B6425778D9900F4B1E6 /* LaunchScreen.storyboard in Resources */,
+				D1E939B4257F789A009B9167 /* TaskCellTableViewCell.xib in Resources */,
+				D1BC5B9E2579A47D00F4B1E6 /* GoogleService-Info.plist in Resources */,
 				D1BC5B6125778D9900F4B1E6 /* Assets.xcassets in Resources */,
 				D1BC5B5F25778D9800F4B1E6 /* Main.storyboard in Resources */,
 			);
@@ -132,12 +237,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00AC39EB0F6F277A400418CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-singleTaskApp/Pods-singleTaskApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-singleTaskApp/Pods-singleTaskApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-singleTaskApp/Pods-singleTaskApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2C996637603B20265812CB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-singleTaskApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D1BC5B5025778D9800F4B1E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1BC5B5C25778D9800F4B1E6 /* ViewController.swift in Sources */,
+				D1E939A5257F5B8A009B9167 /* LoginViewController.swift in Sources */,
+				D1BC5BDE257B3BCF00F4B1E6 /* SendToDBModel.swift in Sources */,
+				D1BC5B842577ABD100F4B1E6 /* CalendarViewController.swift in Sources */,
+				D1BC5B6E25778F7800F4B1E6 /* TabBarController.swift in Sources */,
+				D1BC5BA52579A69900F4B1E6 /* SignUpViewController.swift in Sources */,
+				D1BC5BA12579A68700F4B1E6 /* RegisterViewController.swift in Sources */,
+				D1E939AB257F6A88009B9167 /* Task.swift in Sources */,
+				D1BC5BA82579A6B700F4B1E6 /* ChechPermission.swift in Sources */,
+				D1E939A8257F5D8F009B9167 /* MenuViewController.swift in Sources */,
+				D1BC5B7B257793F200F4B1E6 /* HowToUseViewController.swift in Sources */,
+				D1E939B3257F789A009B9167 /* TaskCellTableViewCell.swift in Sources */,
+				D1BC5BF8257F19E500F4B1E6 /* TodayTaskViewController.swift in Sources */,
+				D1BC5B772577901300F4B1E6 /* TimerController.swift in Sources */,
+				D1E939B725804BC7009B9167 /* LetsStartViewController.swift in Sources */,
 				D1BC5B5825778D9800F4B1E6 /* AppDelegate.swift in Sources */,
 				D1BC5B5A25778D9800F4B1E6 /* SceneDelegate.swift in Sources */,
 			);
@@ -283,9 +443,11 @@
 		};
 		D1BC5B6925778D9900F4B1E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04BA224C18DD766BBB81D9F8 /* Pods-singleTaskApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6VB623J2W;
 				INFOPLIST_FILE = singleTaskApp/Info.plist;
@@ -296,15 +458,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.singleTaskApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		D1BC5B6A25778D9900F4B1E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F441E5C7A48B3C14BDFAF6E2 /* Pods-singleTaskApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N6VB623J2W;
 				INFOPLIST_FILE = singleTaskApp/Info.plist;
@@ -315,7 +479,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.google.singleTaskApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
