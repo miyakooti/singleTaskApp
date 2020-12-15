@@ -64,7 +64,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="check" width="1240" height="1242"/>
+        <image name="check" width="1000" height="1002"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

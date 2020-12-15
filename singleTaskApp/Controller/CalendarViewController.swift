@@ -58,14 +58,21 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         if selectedDate == todaysDate{
             print("今日の日付が選択されました。")
         }
+        
+        tasks.removeAll()
+        print("remobeAllしました")
+        print(tasks)
+        self.loadData()
+        print("loadDataしました")
+        print(tasks)
+        
+        //tableviewをリロードします。
+        self.tableView.reloadData()
 //
 //        print(date)
 //        print("日付けが選択されました")
 //        date = String(date)
-//        print(type(of: date))
-
-        //        selectedDate = String(date)
-
+//        print(type(of: date)
     }
     
     func setUpTodaysDate() -> String{
@@ -94,13 +101,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     //--------------------------------------------------------------------------------
 
+    @IBAction func pushSend(_ sender: Any) {
+        self.send(sender)
+    }
     
     @IBAction func send(_ sender: Any) {
         if taskTextField.text != "", let sender = currentUser?.uid{
             
             let taskBody = taskTextField.text
             
-            db.collection("Tasks").addDocument(data: ["sender":sender, "body":taskBody as Any, "date":todaysDate as Any, "isCompleted":false]) { (error) in
+            db.collection("Tasks").addDocument(data: ["sender":sender, "body":taskBody as Any, "date":selectedDate as Any, "isCompleted":false]) { (error) in
                 
                 if error != nil{
                     print(error.debugDescription)
@@ -130,7 +140,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                     //ここのifを通ってない--------------------------------------------------
                     if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, let isCompleted = data["isCompleted"] as? Bool{
                         
-                        if currentUser?.uid == sender{
+                        print(selectedDate)
+                        print(data["date"])
+                        if currentUser?.uid == sender, selectedDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
                             let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted)
                             print("aaa")
@@ -155,4 +167,5 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             }
         }
     }
+
 }

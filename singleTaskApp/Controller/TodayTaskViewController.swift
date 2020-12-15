@@ -102,7 +102,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
                     //ここのifを通ってない--------------------------------------------------
                     if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, let isCompleted = data["isCompleted"] as? Bool{
                         
-                        if currentUser?.uid == sender{
+                        if currentUser?.uid == sender, todaysDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
                             let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted)
                             print("aaa")
