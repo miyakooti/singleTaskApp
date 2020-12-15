@@ -12,20 +12,27 @@ import CalculateCalendarLogic
 
 
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance{
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource{
+
+    
     
     @IBOutlet weak var calendar: FSCalendar!
     var todaysDate:String?
     var selectedDate:String?
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.calendar.delegate = self
         self.calendar.dataSource = self
-
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         todaysDate = setUpTodaysDate()
         selectedDate = todaysDate
     }
@@ -50,9 +57,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 //        print(type(of: date))
 
         //        selectedDate = String(date)
-        
-        
-            
+
     }
     
     func setUpTodaysDate() -> String{
@@ -63,5 +68,22 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         print(formatter.string(from: date))
         return formatter.string(from: date)
     }
+    
+    //    tableView-------------------------------------------------------------------------
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tasks.count
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TaskCellTableViewCell
+        let task = tasks[indexPath.row]
+        cell.label.text = task.body
+        cell.backView.backgroundColor = .systemTeal
+        cell.label.textColor = .black
+        return cell
+    }
+    //--------------------------------------------------------------------------------
 
 }

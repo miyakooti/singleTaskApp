@@ -11,7 +11,7 @@ struct Task {
     
     let sender:String
     let body:String
-    let date:TimeInterval
+    let date:String
     let isCompleted:Bool
     
 }
