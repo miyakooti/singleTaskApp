@@ -17,10 +17,10 @@ class TimerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTimer()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setUpTimer()
     }
     
     //タイマーをスタートさせるメソッド

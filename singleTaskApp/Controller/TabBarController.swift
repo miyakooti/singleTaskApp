@@ -16,6 +16,7 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
 //        self.navigationController?.isNavigationBarHidden = true
         self.navigationItem.hidesBackButton = true
+        self.navigationController?.isNavigationBarHidden = true
         self.navigationItem.title = ""
     }
 
