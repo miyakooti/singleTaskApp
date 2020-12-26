@@ -26,6 +26,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
+    var soundFile = PlaySound()
     var tasks:[Task] = []
     
     override func viewDidLoad() {
@@ -111,6 +112,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         if taskTextField.text != "", let sender = currentUser?.uid{
             
             let taskBody = taskTextField.text
+            soundFile.playSound(fileName: "addSound", extensionName: "mp3")
             
             db.collection("Tasks").addDocument(data: ["sender":sender, "body":taskBody as Any, "date":todaysDate as Any, "isCompleted":false]) { (error) in
                 
@@ -122,6 +124,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
                 DispatchQueue.main.async { //非同期処理　通信が重かった時とか、ローカルで処理する。
                     self.taskTextField.text = ""
                     self.taskTextField.resignFirstResponder()
+
                 }
             }
         }

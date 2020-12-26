@@ -24,6 +24,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
+    var soundFile = PlaySound()
+
     
     var testDate = "2020-12-27"
     
@@ -145,8 +147,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         if taskTextField.text != "", let sender = currentUser?.uid{
             
             let taskBody = taskTextField.text
-            
-            
+            soundFile.playSound(fileName: "addSound", extensionName: "mp3")
+
             db.collection("Tasks").addDocument(data: ["sender":sender, "body":taskBody as Any, "date":selectedDate as Any, "isCompleted":false]) { (error) in
                 
                 if error != nil{

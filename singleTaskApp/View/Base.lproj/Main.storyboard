@@ -33,10 +33,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGZ-Iu-w7b">
-                                <rect key="frame" x="334" y="107" width="46" height="53"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGZ-Iu-w7b">
+                                <rect key="frame" x="338" y="113" width="40" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="送信"/>
+                                <state key="normal" image="add"/>
                                 <connections>
                                     <action selector="pushSend:" destination="mR3-DE-JMW" eventType="touchUpInside" id="WSI-8N-79T"/>
                                 </connections>
@@ -102,6 +102,7 @@
                                 <rect key="frame" x="0.0" y="439" width="414" height="374"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="105" id="orT-eW-stB">
                                         <rect key="frame" x="0.0" y="28" width="414" height="105"/>
@@ -115,8 +116,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3FZ-dx-wti">
-                                <rect key="frame" x="20" y="392" width="286" height="34"/>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ijC-Xe-ZjI">
+                                <rect key="frame" x="0.0" y="382" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="本日のタスクを入力してください！" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3FZ-dx-wti">
+                                <rect key="frame" x="29" y="395" width="286" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -129,10 +135,15 @@
                                     <navigationItem title="calendar" id="LvB-sW-Yep"/>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYd-GG-gV3">
-                                <rect key="frame" x="334" y="396" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYd-GG-gV3">
+                                <rect key="frame" x="343" y="395" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                    <color key="titleShadowColor" systemColor="labelColor"/>
+                                    <imageReference key="image" image="add" symbolScale="large"/>
+                                </state>
                                 <connections>
                                     <action selector="pushSend:" destination="81l-U5-vdo" eventType="touchUpInside" id="JAZ-Mt-eNQ"/>
                                 </connections>
@@ -467,7 +478,9 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zYl-QN-1VW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.070387311279773712" green="0.099051244556903839" blue="0.25627881288528442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="mR3-DE-JMW" kind="relationship" relationship="viewControllers" id="eMi-wW-enc"/>
@@ -504,6 +517,7 @@
         <segue reference="oDV-oJ-jQQ"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="add" width="48" height="48"/>
         <image name="back" width="300" height="505"/>
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
@@ -511,6 +525,9 @@
         <image name="escape" catalog="system" width="128" height="121"/>
         <image name="fox" width="1280" height="1280"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondarySystemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

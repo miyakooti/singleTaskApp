@@ -17,7 +17,15 @@ class TabBarController: UITabBarController {
 //        self.navigationController?.isNavigationBarHidden = true
         self.navigationItem.hidesBackButton = true
 //        self.navigationController?.isNavigationBarHidden = true
-        self.navigationItem.title = ""
+//        self.navigationItem.title = ""
+        
+        //タブバーとナビゲーションバーの色を変更する。
+        self.tabBar.barTintColor = UIColor(red: 0/255, green: 26/255, blue: 67/255, alpha: 1.0)
+        self.tabBar.tintColor = .white
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 26/255, blue: 67/255, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = .white
+        
+
     }
     
 //    override func performSegue(withIdentifier identifier: String, sender: Any?) {

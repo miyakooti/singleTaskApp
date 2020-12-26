@@ -32,7 +32,7 @@ class TaskCellTableViewCell: UITableViewCell {
     override func awakeFromNib() { //viewDidLoadと同じ
         super.awakeFromNib()
         backView.layer.cornerRadius = 10
-        checkButton.backgroundColor = .red
+//        checkButton.backgroundColor = .red
         
         
     }
