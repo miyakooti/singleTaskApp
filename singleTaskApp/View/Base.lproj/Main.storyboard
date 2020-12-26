@@ -286,16 +286,17 @@
                                     <action selector="logOut:" destination="hHX-xo-MUq" eventType="touchUpInside" id="Fg2-tH-aZh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddy-qd-Xka">
-                                <rect key="frame" x="322" y="406" width="67" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ddy-qd-Xka">
+                                <rect key="frame" x="0.0" y="717" width="414" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal">
-                                    <imageReference key="image" image="escape" catalog="system" symbolScale="large"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="ログアウト">
+                                    <color key="titleColor" red="0.99613231420516968" green="0.017283925786614418" blue="0.0051926099695265293" alpha="0.72762374372671768" colorSpace="custom" customColorSpace="sRGB"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <connections>
-                                    <action selector="logOut:" destination="hHX-xo-MUq" eventType="touchUpInside" id="f2Q-6e-O7c"/>
+                                    <action selector="dispLogoutAlert:" destination="hHX-xo-MUq" eventType="touchUpInside" id="lzh-AG-WHX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -514,7 +515,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oDV-oJ-jQQ"/>
+        <segue reference="j87-rB-I1T"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="add" width="48" height="48"/>
@@ -522,7 +523,6 @@
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="110"/>
-        <image name="escape" catalog="system" width="128" height="121"/>
         <image name="fox" width="1280" height="1280"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">

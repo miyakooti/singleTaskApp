@@ -14,6 +14,7 @@ import SDWebImage
 
 class MenuViewController: UIViewController {
     
+
     let currentUser = Auth.auth().currentUser
     
     let db = Firestore.firestore()
@@ -68,7 +69,7 @@ class MenuViewController: UIViewController {
         }
     }
     
-    @IBAction func logOut(_ sender: Any) {
+    func logOut(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: "userImage")
         do {
             try Auth.auth().signOut()
@@ -77,6 +78,29 @@ class MenuViewController: UIViewController {
         }
         performSegue(withIdentifier: "logOut", sender: nil)
     }
+    
+    @IBAction func dispLogoutAlert(_ sender: Any) {
+        let alert: UIAlertController = UIAlertController(title: "ログアウトしますか？", message: "", preferredStyle:  UIAlertController.Style.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{ [self]
+            (action: UIAlertAction!) -> Void in
+            logOut(sender)
+        })
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+            })
+        
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        
+        present(alert, animated: true, completion: nil)
+
+
+
+    }
+    
     
     /*
     // MARK: - Navigation
