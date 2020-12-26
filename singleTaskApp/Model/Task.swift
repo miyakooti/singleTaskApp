@@ -12,6 +12,7 @@ struct Task {
     let sender:String
     let body:String
     let date:String
-    let isCompleted:Bool
+    var isCompleted:Bool
+    let documentID:String
     
 }

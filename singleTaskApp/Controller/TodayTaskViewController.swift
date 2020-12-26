@@ -4,12 +4,20 @@
 //
 //  Created by Arai Kousuke on 2020/12/08.
 //
+
+
+//メモ：タップ処理
+//まずdidselectrowatでindexpathを指定
+//そのあと、そのindexpathを利用して、そのindexpathをもつデータをfirebase上で指定して、
+//その値を変更して、loaddataをすれば良い気がする。
+
+
 import UIKit
 import Firebase
-import FirebaseFirestore
 import FirebaseAuth
 
-class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate {
+
+class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate, TaskCellTableViewCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taskTextField: UITextField!
@@ -26,7 +34,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         taskTextField.delegate = self
-        //カスタムセル
+        //カスタムセル登録
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
         loadData()
     }
@@ -34,7 +42,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         todaysDate = setUpTodaysDate()
-        print(todaysDate)
+        print(todaysDate as Any)
     }
     
     func setUpTodaysDate() -> String{
@@ -47,6 +55,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     //    tableView-------------------------------------------------------------------------
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
@@ -54,13 +63,44 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TaskCellTableViewCell
+        cell.delegate = self
+        
         let task = tasks[indexPath.row]
+        
+        cell.index = indexPath.row
+        cell.documentID = task.documentID
+        cell.isCompleted = task.isCompleted
+        
+        
+        
         cell.label.text = task.body
         cell.backView.backgroundColor = .systemTeal
         cell.label.textColor = .black
+        
+        if task.isCompleted == false{
+            cell.checkButton.setImage(UIImage(named: "nonChecked"), for: .normal)
+        } else {
+            cell.checkButton.setImage(UIImage(named: "checked"), for: .normal)
+        }
+        
+        
         return cell
     }
+    
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TaskCellTableViewCell
+//
+//        if tasks[indexPath.row].isCompleted == false{
+//            tasks[indexPath.row].isCompleted = true
+//        } else {
+//            tasks[indexPath.row].isCompleted = false
+//        }
+//
+//    }
+
     //--------------------------------------------------------------------------------
     
     @IBAction func pushSend(_ sender: Any) {
@@ -95,16 +135,16 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
                 return
             }
             if let snapShotDoc = snapShot?.documents{
-                //ここまではOK
                 //snapshotはある一つのコレクション
                 for doc in snapShotDoc{
+                    
                     let data = doc.data()
-                    //ここのifを通ってない--------------------------------------------------
-                    if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, let isCompleted = data["isCompleted"] as? Bool{
+
+                    if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, var isCompleted = data["isCompleted"] as? Bool, let docID = doc.documentID as String?{
                         
                         if currentUser?.uid == sender, todaysDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
-                            let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted)
+                            let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted, documentID: docID)
                             print("aaa")
                             
                             //tasksリストにappendする。

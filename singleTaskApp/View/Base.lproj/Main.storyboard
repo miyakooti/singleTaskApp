@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8n5-sD-umc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8n5-sD-umc">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -71,8 +71,7 @@
                         <viewLayoutGuide key="safeArea" id="ga2-kq-JVy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="today" id="Rzh-Fl-JEL"/>
-                    <navigationItem key="navigationItem" id="UDF-Md-dou"/>
+                    <tabBarItem key="tabBarItem" title="today" image="checkmark.square" catalog="system" id="Rzh-Fl-JEL"/>
                     <connections>
                         <outlet property="tableView" destination="egw-YB-iiY" id="0iC-WO-k1B"/>
                         <outlet property="taskTextField" destination="ORg-y0-WbT" id="Ls6-CC-aog"/>
@@ -90,7 +89,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="yxK-E9-Ax0">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="yxK-E9-Ax0">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -110,6 +109,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="orT-eW-stB" id="imb-3H-0Oa">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
@@ -122,6 +122,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K40-vI-Fjw">
+                                <rect key="frame" x="0.0" y="45" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="calendar" id="LvB-sW-Yep"/>
+                                </items>
+                            </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yYd-GG-gV3">
                                 <rect key="frame" x="334" y="396" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -134,7 +141,7 @@
                         <viewLayoutGuide key="safeArea" id="REf-XX-qCm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="calendar" id="dsW-9X-VcU"/>
+                    <tabBarItem key="tabBarItem" title="calendar" image="calendar" catalog="system" landscapeImage="calendar" id="dsW-9X-VcU"/>
                     <connections>
                         <outlet property="calendar" destination="QyW-FX-RcZ" id="v7W-T0-0aO"/>
                         <outlet property="tableView" destination="L02-27-hZe" id="VyA-mq-yFD"/>
@@ -153,7 +160,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YeZ-UJ-diJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="H9r-X2-oI6">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -213,7 +220,7 @@
                         <viewLayoutGuide key="safeArea" id="wjX-Sl-wit"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="timer" id="QkJ-f2-1G2"/>
+                    <tabBarItem key="tabBarItem" title="timer" image="clock.arrow.circlepath" catalog="system" landscapeImage="clock.arrow.circlepath" id="QkJ-f2-1G2"/>
                     <connections>
                         <outlet property="minuteLabel" destination="shE-GE-4BY" id="gb6-mb-JHE"/>
                         <outlet property="secondLabel" destination="vL9-Q7-Zr2" id="5cc-2x-0ea"/>
@@ -231,7 +238,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="naN-YK-tN3">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="9Gp-MB-FUi">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="naN-YK-tN3">
                                 <rect key="frame" x="0.0" y="86" width="414" height="217"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -265,7 +276,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ddy-qd-Xka">
-                                <rect key="frame" x="319" y="39" width="67" height="50"/>
+                                <rect key="frame" x="322" y="406" width="67" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal">
@@ -280,7 +291,7 @@
                         <viewLayoutGuide key="safeArea" id="obp-Wl-S3x"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="menu" id="GnK-JM-5hO"/>
+                    <tabBarItem key="tabBarItem" title="menu" image="gearshape" catalog="system" landscapeImage="gearshape" id="GnK-JM-5hO"/>
                     <connections>
                         <outlet property="iconImageView" destination="ed6-ni-BpN" id="rta-Q7-Yy7"/>
                         <outlet property="mailText" destination="TuW-1S-e6D" id="lVo-92-dsQ"/>
@@ -490,12 +501,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="j87-rB-I1T"/>
+        <segue reference="oDV-oJ-jQQ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="300" height="505"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
+        <image name="clock.arrow.circlepath" catalog="system" width="128" height="110"/>
         <image name="escape" catalog="system" width="128" height="121"/>
         <image name="fox" width="1280" height="1280"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <systemColor name="secondarySystemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

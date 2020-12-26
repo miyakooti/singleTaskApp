@@ -28,7 +28,6 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.title = "menu"
     
-//
         mailText.text = String((currentUser?.email)!)
 //        uidLabel.text = String((user?.uid)!)
         

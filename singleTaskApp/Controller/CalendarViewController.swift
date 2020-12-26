@@ -12,7 +12,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TaskCellTableViewCellDelegate{
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var taskTextField: UITextField!
@@ -93,10 +93,25 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TaskCellTableViewCell
+        cell.delegate = self
+        
         let task = tasks[indexPath.row]
+        
+        cell.index = indexPath.row
+        cell.documentID = task.documentID
+        cell.isCompleted = task.isCompleted
+        
+        
+        
         cell.label.text = task.body
         cell.backView.backgroundColor = .systemTeal
         cell.label.textColor = .black
+        
+        if task.isCompleted == false{
+            cell.checkButton.setImage(UIImage(named: "nonChecked"), for: .normal)
+        } else {
+            cell.checkButton.setImage(UIImage(named: "checked"), for: .normal)
+        }
         return cell
     }
     //--------------------------------------------------------------------------------
@@ -109,6 +124,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         if taskTextField.text != "", let sender = currentUser?.uid{
             
             let taskBody = taskTextField.text
+            
             
             db.collection("Tasks").addDocument(data: ["sender":sender, "body":taskBody as Any, "date":selectedDate as Any, "isCompleted":false]) { (error) in
                 
@@ -138,13 +154,13 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                 for doc in snapShotDoc{
                     let data = doc.data()
                     //ここのifを通ってない--------------------------------------------------
-                    if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, let isCompleted = data["isCompleted"] as? Bool{
+                    if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, let isCompleted = data["isCompleted"] as? Bool, let docID = doc.documentID as? String{
                         
                         print(selectedDate)
                         print(data["date"])
                         if currentUser?.uid == sender, selectedDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
-                            let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted)
+                            let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted, documentID: docID)
                             print("aaa")
                             
                             //tasksリストにappendする。

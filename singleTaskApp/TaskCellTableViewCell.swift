@@ -6,17 +6,31 @@
 //
 
 import UIKit
+import Firebase
+
+protocol TaskCellTableViewCellDelegate {
+    func loadData()
+}
+
 
 class TaskCellTableViewCell: UITableViewCell {
+    var delegate: TaskCellTableViewCellDelegate!
 
-    @IBOutlet weak var checkImageView: UIImageView!
+    @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var label: UILabel!
+    var index:Int?
+    var documentID:String?
+    var isCompleted = false
+    
+    let db = Firestore.firestore()
+    let currentUser = Auth.auth().currentUser
     
     override func awakeFromNib() { //viewDidLoadと同じ
         super.awakeFromNib()
-        checkImageView.layer.cornerRadius = 22.5
         backView.layer.cornerRadius = 10
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -24,5 +38,20 @@ class TaskCellTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+    @IBAction func tapCheck(_ sender: Any) {
+        //ここでindexPathを利用したいです。
+        print("今タップされたセルのindexPath.rowは、\(index ?? 404)です")
+        let docRef = db.collection("Tasks").document(documentID!)
+        
+        //isCompletedを反転させる処理
+        if isCompleted{
+            docRef.updateData(["isCompleted": false])
+        } else {
+            docRef.updateData(["isCompleted": true])
+
+        }
+        delegate?.loadData() //protocolを記述したことによって、他のクラスのメソッドが利用可能になる。（他のクラスで処理をする事ができる。）
+        
+    }
 }
