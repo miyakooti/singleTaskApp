@@ -14,13 +14,18 @@ import FirebaseAuth
 
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TaskCellTableViewCellDelegate{
     
+    
+    
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var taskTextField: UITextField!
+    
     
     var tasks:[Task] = []
     
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
+    
+    var testDate = "2020-12-27"
     
     var todaysDate:String?
     var selectedDate:String?
@@ -51,10 +56,11 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         let year = tmpDate.component(.year, from: date)
         let month = tmpDate.component(.month, from: date)
         let day = tmpDate.component(.day, from: date)
-        selectedDate = "\(year)-\(month)-\(day)"
+        selectedDate = "\(year)/\(month)/\(day)"
         print(selectedDate as Any)
         print(type(of: selectedDate))
         
+
         if selectedDate == todaysDate{
             print("今日の日付が選択されました。")
         }
@@ -75,15 +81,30 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 //        print(type(of: date)
     }
     
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+    }
     func setUpTodaysDate() -> String{
         // 現在日時を取得
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy/MM/dd"
         print(formatter.string(from: date))
         return formatter.string(from: date)
     }
     
+    
+//無理でした。
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+//        print(date)
+//        print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
+//        print(type(of: date))
+//        date = String(date)
+//        if testDate == date{
+//            return UIColor.green
+//        }
+//        return UIColor.red
+//    }
     //    tableView-------------------------------------------------------------------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count

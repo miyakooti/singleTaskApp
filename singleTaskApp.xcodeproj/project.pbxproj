@@ -23,6 +23,9 @@
 		D1BC5BA82579A6B700F4B1E6 /* ChechPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BA72579A6B700F4B1E6 /* ChechPermission.swift */; };
 		D1BC5BDE257B3BCF00F4B1E6 /* SendToDBModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BDD257B3BCF00F4B1E6 /* SendToDBModel.swift */; };
 		D1BC5BF8257F19E500F4B1E6 /* TodayTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5BF7257F19E500F4B1E6 /* TodayTaskViewController.swift */; };
+		D1DFE56925971AEF0069A7C8 /* PlaySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DFE56825971AEF0069A7C8 /* PlaySound.swift */; };
+		D1DFE56C25971CE80069A7C8 /* unCompleteSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1DFE56B25971CE80069A7C8 /* unCompleteSound.mp3 */; };
+		D1DFE56F25971CF00069A7C8 /* completeSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1DFE56E25971CF00069A7C8 /* completeSound.mp3 */; };
 		D1E939A5257F5B8A009B9167 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939A4257F5B8A009B9167 /* LoginViewController.swift */; };
 		D1E939A8257F5D8F009B9167 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939A7257F5D8F009B9167 /* MenuViewController.swift */; };
 		D1E939AB257F6A88009B9167 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E939AA257F6A88009B9167 /* Task.swift */; };
@@ -51,6 +54,9 @@
 		D1BC5BA72579A6B700F4B1E6 /* ChechPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChechPermission.swift; sourceTree = "<group>"; };
 		D1BC5BDD257B3BCF00F4B1E6 /* SendToDBModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendToDBModel.swift; sourceTree = "<group>"; };
 		D1BC5BF7257F19E500F4B1E6 /* TodayTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTaskViewController.swift; sourceTree = "<group>"; };
+		D1DFE56825971AEF0069A7C8 /* PlaySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySound.swift; sourceTree = "<group>"; };
+		D1DFE56B25971CE80069A7C8 /* unCompleteSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = unCompleteSound.mp3; sourceTree = "<group>"; };
+		D1DFE56E25971CF00069A7C8 /* completeSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = completeSound.mp3; sourceTree = "<group>"; };
 		D1E939A4257F5B8A009B9167 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D1E939A7257F5D8F009B9167 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		D1E939AA257F6A88009B9167 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -107,6 +113,7 @@
 				D1BC5B6525778D9900F4B1E6 /* Info.plist */,
 				D1BC5B9D2579A47D00F4B1E6 /* GoogleService-Info.plist */,
 				D1E939B1257F789A009B9167 /* TaskCellTableViewCell.swift */,
+				D1DFE57325971DA20069A7C8 /* soundFiles */,
 				D1E939B2257F789A009B9167 /* TaskCellTableViewCell.xib */,
 			);
 			path = singleTaskApp;
@@ -120,6 +127,7 @@
 				D1BC5BA72579A6B700F4B1E6 /* ChechPermission.swift */,
 				D1BC5BDD257B3BCF00F4B1E6 /* SendToDBModel.swift */,
 				D1E939AA257F6A88009B9167 /* Task.swift */,
+				D1DFE56825971AEF0069A7C8 /* PlaySound.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,6 +165,15 @@
 				D1BC5B7A257793F200F4B1E6 /* HowToUseViewController.swift */,
 			);
 			path = SettingsTab;
+			sourceTree = "<group>";
+		};
+		D1DFE57325971DA20069A7C8 /* soundFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D1DFE56B25971CE80069A7C8 /* unCompleteSound.mp3 */,
+				D1DFE56E25971CF00069A7C8 /* completeSound.mp3 */,
+			);
+			path = soundFiles;
 			sourceTree = "<group>";
 		};
 		EE760BD8B6F096024B81DE34 /* Pods */ = {
@@ -227,8 +244,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1DFE56F25971CF00069A7C8 /* completeSound.mp3 in Resources */,
 				D1BC5B6425778D9900F4B1E6 /* LaunchScreen.storyboard in Resources */,
 				D1E939B4257F789A009B9167 /* TaskCellTableViewCell.xib in Resources */,
+				D1DFE56C25971CE80069A7C8 /* unCompleteSound.mp3 in Resources */,
 				D1BC5B9E2579A47D00F4B1E6 /* GoogleService-Info.plist in Resources */,
 				D1BC5B6125778D9900F4B1E6 /* Assets.xcassets in Resources */,
 				D1BC5B5F25778D9800F4B1E6 /* Main.storyboard in Resources */,
@@ -300,6 +319,7 @@
 				D1E939B725804BC7009B9167 /* LetsStartViewController.swift in Sources */,
 				D1BC5B5825778D9800F4B1E6 /* AppDelegate.swift in Sources */,
 				D1BC5B5A25778D9800F4B1E6 /* SceneDelegate.swift in Sources */,
+				D1DFE56925971AEF0069A7C8 /* PlaySound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@ import FirebaseAuth
 
 
 class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate, TaskCellTableViewCellDelegate {
-    
+        
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taskTextField: UITextField!
     
@@ -49,7 +49,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         // 現在日時を取得
         var date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy/MM/dd"
         print(formatter.string(from: date))
         return formatter.string(from: date)
     }

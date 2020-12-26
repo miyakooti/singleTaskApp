@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import AVFoundation
 
 protocol TaskCellTableViewCellDelegate {
     func loadData()
@@ -15,6 +16,8 @@ protocol TaskCellTableViewCellDelegate {
 
 class TaskCellTableViewCell: UITableViewCell {
     var delegate: TaskCellTableViewCellDelegate!
+    
+    var soundFile = PlaySound()
 
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var backView: UIView!
@@ -29,6 +32,7 @@ class TaskCellTableViewCell: UITableViewCell {
     override func awakeFromNib() { //viewDidLoadと同じ
         super.awakeFromNib()
         backView.layer.cornerRadius = 10
+        checkButton.backgroundColor = .red
         
         
     }
@@ -47,8 +51,10 @@ class TaskCellTableViewCell: UITableViewCell {
         //isCompletedを反転させる処理
         if isCompleted{
             docRef.updateData(["isCompleted": false])
+            soundFile.playSound(fileName: "unCompleteSound", extensionName: "mp3")
         } else {
             docRef.updateData(["isCompleted": true])
+            soundFile.playSound(fileName: "completeSound", extensionName: "mp3")
 
         }
         delegate?.loadData() //protocolを記述したことによって、他のクラスのメソッドが利用可能になる。（他のクラスで処理をする事ができる。）
