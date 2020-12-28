@@ -17,7 +17,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var taskTextField: UITextField!
     
-    
     var tasks:[Task] = []
     var datesWithElement:[String] = []
     
@@ -48,7 +47,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         todaysDate = setUpTodaysDate()
         selectedDate = todaysDate
         DispatchQueue.main.async { self.calendar.reloadData() }
-
     }
     
 //    カレンダー関連ーーーーーーーーーーーーーーーーーーーーーーーーーーー-------
@@ -61,7 +59,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         let month = tmpDate.component(.month, from: date)
         let day = tmpDate.component(.day, from: date)
         selectedDate = "\(year)/\(month)/\(day)"
-        
         tasks.removeAll()
         self.loadData()
         //tableviewをリロードします。
@@ -69,8 +66,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-           
-           var dateString = self.dateToString(date: date, format: "yyyy/MM/dd") as String?
+        let dateString = self.dateToString(date: date, format: "yyyy/MM/dd") as String?
            print("calendarでのdateWithElementです")
            print(datesWithElement)
            if datesWithElement.contains(dateString!){
@@ -105,7 +101,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 
     
     
-    //    tableView-------------------------------------------------------------------------
+    
+//    tableView-------------------------------------------------------------------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
@@ -133,7 +130,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
         return cell
     }
-    //    /tableview---------------------------------------------------------------------------
+//    /tableview---------------------------------------------------------------------------
+    
 
     @IBAction func pushSend(_ sender: Any) {
         self.send(sender)
@@ -141,17 +139,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     @IBAction func send(_ sender: Any) {
         if taskTextField.text != "", let sender = currentUser?.uid{
-            
             let taskBody = taskTextField.text
             soundFile.playSound(fileName: "addSound", extensionName: "mp3")
-
             db.collection("Tasks").addDocument(data: ["sender":sender, "body":taskBody as Any, "date":selectedDate as Any, "isCompleted":false]) { (error) in
                 
                 if error != nil{
                     print(error.debugDescription)
                     return
                 }
-                
                 DispatchQueue.main.async { //非同期処理　通信が重かった時とか、ローカルで処理する。
                     self.taskTextField.text = ""
                     self.taskTextField.resignFirstResponder()
@@ -171,7 +166,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                 return
             }
             if let snapShotDoc = snapShot?.documents{
-                //ここまではOK
                 //snapshotはある一つのコレクション
                 for doc in snapShotDoc{
                     let data = doc.data()
@@ -194,26 +188,12 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                                 print(self.tasks.count)
                                 let indexPath = IndexPath(row: self.tasks.count - 1, section: 0)
                                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                            
                             }
                         }
-                        
                     }
-//                    self.calendar.reloadData()
-
-
                 }
-                //ここにdispatchを移動すると、動作が軽くなるかもしれません
-
-
             }
-//            self.calendar.reloadData()
-//            self.calendar(self.calendar, numberOfEventsFor: )
         }
-//        DispatchQueue.main.async { self.calendar.reloadData() }
-
     }
-    
-
 
 }
