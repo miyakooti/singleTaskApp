@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7251DA9BC6797FF3673B6898 /* Pods_singleTaskApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A2AA27C644674465234E17 /* Pods_singleTaskApp.framework */; };
+		D174FC3225998BE80068A9E3 /* StringDateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D174FC3125998BE80068A9E3 /* StringDateConverter.swift */; };
 		D1BC5B5825778D9800F4B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B5725778D9800F4B1E6 /* AppDelegate.swift */; };
 		D1BC5B5A25778D9800F4B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC5B5925778D9800F4B1E6 /* SceneDelegate.swift */; };
 		D1BC5B5F25778D9800F4B1E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1BC5B5D25778D9800F4B1E6 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		04BA224C18DD766BBB81D9F8 /* Pods-singleTaskApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-singleTaskApp.debug.xcconfig"; path = "Target Support Files/Pods-singleTaskApp/Pods-singleTaskApp.debug.xcconfig"; sourceTree = "<group>"; };
 		95A2AA27C644674465234E17 /* Pods_singleTaskApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_singleTaskApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D174FC3125998BE80068A9E3 /* StringDateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDateConverter.swift; sourceTree = "<group>"; };
 		D1BC5B5425778D9800F4B1E6 /* singleTaskApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = singleTaskApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1BC5B5725778D9800F4B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1BC5B5925778D9800F4B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				D1BC5BDD257B3BCF00F4B1E6 /* SendToDBModel.swift */,
 				D1E939AA257F6A88009B9167 /* Task.swift */,
 				D1DFE56825971AEF0069A7C8 /* PlaySound.swift */,
+				D174FC3125998BE80068A9E3 /* StringDateConverter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1E939A5257F5B8A009B9167 /* LoginViewController.swift in Sources */,
+				D174FC3225998BE80068A9E3 /* StringDateConverter.swift in Sources */,
 				D1BC5BDE257B3BCF00F4B1E6 /* SendToDBModel.swift in Sources */,
 				D1BC5B842577ABD100F4B1E6 /* CalendarViewController.swift in Sources */,
 				D1BC5B6E25778F7800F4B1E6 /* TabBarController.swift in Sources */,

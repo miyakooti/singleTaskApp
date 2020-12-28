@@ -23,6 +23,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
     let soundFile = PlaySound()
+    let stringDateConverter = StringDateConverter()
     
     var testDate = "2020-12-27"
     
@@ -66,7 +67,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let dateString = self.dateToString(date: date, format: "yyyy/MM/dd") as String?
+        let dateString = stringDateConverter.dateToString(date: date, format: "yyyy/MM/dd") as String?
            print("calendarでのdateWithElementです")
            print(datesWithElement)
            if datesWithElement.contains(dateString!){
@@ -82,20 +83,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         formatter.dateFormat = "yyyy/MM/dd"
         return formatter.string(from: date)
     }
-    
-    func stringToDate(string: String, format: String) -> Date {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.dateFormat = format
-        return formatter.date(from: string)!
-    }
-    
-    func dateToString(date: Date, format: String) -> String {
-        let formatter: DateFormatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.dateFormat = format
-        return formatter.string(from: date)
-    }
+
     
 //    /カレンダー関連ーーーーーーーーーーーーーーーーーーーーーーーーーーー-------
 
