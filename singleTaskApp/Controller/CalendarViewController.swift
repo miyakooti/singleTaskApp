@@ -14,18 +14,16 @@ import FirebaseAuth
 
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, TaskCellTableViewCellDelegate{
     
-    
-    
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var taskTextField: UITextField!
     
     
     var tasks:[Task] = []
+    var datesWithElement:[String] = []
     
     let db = Firestore.firestore()
     let currentUser = Auth.auth().currentUser
-    var soundFile = PlaySound()
-
+    let soundFile = PlaySound()
     
     var testDate = "2020-12-27"
     
@@ -43,14 +41,18 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         taskTextField.delegate = self
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
         loadData()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         todaysDate = setUpTodaysDate()
         selectedDate = todaysDate
+        DispatchQueue.main.async { self.calendar.reloadData() }
+
     }
+    
+//    カレンダー関連ーーーーーーーーーーーーーーーーーーーーーーーーーーー-------
+
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
@@ -59,54 +61,50 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         let month = tmpDate.component(.month, from: date)
         let day = tmpDate.component(.day, from: date)
         selectedDate = "\(year)/\(month)/\(day)"
-        print(selectedDate as Any)
-        print(type(of: selectedDate))
-        
-
-        if selectedDate == todaysDate{
-            print("今日の日付が選択されました。")
-        }
         
         tasks.removeAll()
-        print("remobeAllしました")
-        print(tasks)
         self.loadData()
-        print("loadDataしました")
-        print(tasks)
-        
         //tableviewをリロードします。
         self.tableView.reloadData()
-//
-//        print(date)
-//        print("日付けが選択されました")
-//        date = String(date)
-//        print(type(of: date)
     }
     
-    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
-    }
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+           
+           var dateString = self.dateToString(date: date, format: "yyyy/MM/dd") as String?
+           print("calendarでのdateWithElementです")
+           print(datesWithElement)
+           if datesWithElement.contains(dateString!){
+               return 1
+           }
+           return 0
+       }
+ 
     func setUpTodaysDate() -> String{
         // 現在日時を取得
         let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
-        print(formatter.string(from: date))
         return formatter.string(from: date)
     }
     
+    func stringToDate(string: String, format: String) -> Date {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.date(from: string)!
+    }
     
-//無理でした。
-//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
-//        print(date)
-//        print("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
-//        print(type(of: date))
-//        date = String(date)
-//        if testDate == date{
-//            return UIColor.green
-//        }
-//        return UIColor.red
-//    }
+    func dateToString(date: Date, format: String) -> String {
+        let formatter: DateFormatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.dateFormat = format
+        return formatter.string(from: date)
+    }
+    
+//    /カレンダー関連ーーーーーーーーーーーーーーーーーーーーーーーーーーー-------
+
+    
+    
     //    tableView-------------------------------------------------------------------------
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
@@ -124,8 +122,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         cell.documentID = task.documentID
         cell.isCompleted = task.isCompleted
         
-        
-        
         cell.label.text = task.body
         cell.backView.backgroundColor = .systemTeal
         cell.label.textColor = .black
@@ -137,7 +133,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
         return cell
     }
-    //--------------------------------------------------------------------------------
+    //    /tableview---------------------------------------------------------------------------
 
     @IBAction func pushSend(_ sender: Any) {
         self.send(sender)
@@ -159,6 +155,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                 DispatchQueue.main.async { //非同期処理　通信が重かった時とか、ローカルで処理する。
                     self.taskTextField.text = ""
                     self.taskTextField.resignFirstResponder()
+                    self.calendar.reloadData()
+
                 }
             }
         }
@@ -166,7 +164,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     func loadData(){
         db.collection("Tasks").order(by: "date").addSnapshotListener { [self] (snapShot, error) in
-            self.tasks = [] //初期化しておく
+            self.datesWithElement.removeAll()
+            self.tasks.removeAll() //初期化しておく
             if error != nil{
                 print(error.debugDescription)
                 return
@@ -179,16 +178,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                     //ここのifを通ってない--------------------------------------------------
                     if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, let isCompleted = data["isCompleted"] as? Bool, let docID = doc.documentID as? String{
                         
-                        print(selectedDate)
-                        print(data["date"])
+                        datesWithElement.append(data["date"] as! String)
+                        print("loadDataでのdatesWithElementです↓")
+                        print(datesWithElement)
+                        
                         if currentUser?.uid == sender, selectedDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
                             let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted, documentID: docID)
                             print("aaa")
-                            
                             //tasksリストにappendする。
                             self.tasks.append(newTask)
-                            
                             //dispatchQueueはfor分の外に出しました。
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
@@ -200,11 +199,21 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                         }
                         
                     }
+//                    self.calendar.reloadData()
+
+
                 }
                 //ここにdispatchを移動すると、動作が軽くなるかもしれません
 
+
             }
+//            self.calendar.reloadData()
+//            self.calendar(self.calendar, numberOfEventsFor: )
         }
+//        DispatchQueue.main.async { self.calendar.reloadData() }
+
     }
+    
+
 
 }
