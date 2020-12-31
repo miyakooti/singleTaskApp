@@ -16,18 +16,15 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     let currentUserInstance = Auth.auth().currentUser
     let db = Firestore.firestore()
-    
-    @IBOutlet weak var testBackImageView: UIImageView!
-    
-    
+        
     var saveArray: Array! = [NSData]()
+    var imageString = String()
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var backImageView: UIImageView!
-    
-    var imageString = String()
-    
+    @IBOutlet weak var testBackImageView: UIImageView!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "menu"
@@ -39,11 +36,9 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             loadImage()
         }
         
-        //画像を反映させる
-        showImage(imageString: imageString)
         
-        //こんにちは。メールアドレスさん
-        greeting()
+        showImage(imageString: imageString) //画像を反映させる
+        greeting() //こんにちは。メールアドレスさん
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +86,7 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         } catch let signOutError as NSError {
           print ("Error signing out: %@", signOutError)
         }
+        UserDefaults.standard.removeObject(forKey: "backImage") //ローカルのやつ消して
         performSegue(withIdentifier: "logOut", sender: nil)
     }
     
@@ -114,10 +110,31 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     
-    // image選択--------------------------------------------------------
+// image選択-------------------------------------------------------------
+    
+    //アラートコントローラの作成。
+    func showAlert(){
+        let alertController = UIAlertController(title: "背景画像の選択", message: "背景画像を選択する方法を選んでください。", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "カメラ", style: .default) { (alert) in
+            self.doCamera()
+        }
+        let action2 = UIAlertAction(title: "アルバム", style: .default) { (alert) in
+            self.doAlbum()
+        }
+        let action3 = UIAlertAction(title: "デフォルト画像に戻す", style: .default) { (alert) in
+            self.revertDefaultBackImage() //デフォルトのやつ反映させる。
+        }
+        let action4 = UIAlertAction(title: "キャンセル", style: .cancel)
+        alertController.addAction(action1)
+        alertController.addAction(action2)
+        alertController.addAction(action3)
+        alertController.addAction(action4)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    //　1.カメラアクション。
     func doCamera(){
         let sourceType:UIImagePickerController.SourceType = .camera
-        //カメラ利用可能かチェック
         if UIImagePickerController.isSourceTypeAvailable(.camera){
             let cameraPicker = UIImagePickerController()
             cameraPicker.allowsEditing = true
@@ -127,10 +144,9 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
-    //アルバム立ち上げメソッド
+    // 2.アルバムアクション
     func doAlbum(){
         let sourceType:UIImagePickerController.SourceType = .photoLibrary
-        //カメラ利用可能かチェック
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
             let cameraPicker = UIImagePickerController()
             cameraPicker.allowsEditing = true
@@ -138,93 +154,58 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             cameraPicker.delegate = self
             self.present(cameraPicker, animated: true, completion: nil)
         }
-        
     }
     
-//    カメラやアルバムで選択した時、呼ばれる。つまり画像が多分入る
+    // 3.デフォルト画像に戻すアクション
+    func revertDefaultBackImage(){
+        UserDefaults.standard.removeObject(forKey: "backImage") //ローカルのやつ消して
+        self.backImageView.image = UIImage(named: "back")
+    }
+    
+    // 4.キャンセルアクション
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    //　ここでカメラやアルバムの画像を取り込む。
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if info[.originalImage] as? UIImage != nil{
             let selectedImage = info[.originalImage] as! UIImage
             //この部分が新規登録画面と違うところ。ローカルにある背景画像を更新する。
-            setBackImage(selectedImage: selectedImage)
-            showImageFromUserDefaults()
             
-            
-            
-            
+            setBackImage(selectedImage: selectedImage) //画像をローカルに保存して、
+            showImageFromUserDefaults() //それを反映させます！
             
             
             picker.dismiss(animated: true, completion: nil)
         }
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    //アラート。アルバム？キャンセル？それとも、カメラ？
-    func showAlert(){
-        let alertController = UIAlertController(title: "選択", message: "どちらを使用しますか?", preferredStyle: .actionSheet)
-        let action1 = UIAlertAction(title: "カメラ", style: .default) { (alert) in
-            self.doCamera()
-        }
-        let action2 = UIAlertAction(title: "アルバム", style: .default) { (alert) in
-            self.doAlbum()
-        }
-        let action3 = UIAlertAction(title: "デフォルト画像に戻す", style: .default) { (alert) in
-            UserDefaults.standard.removeObject(forKey: "backImage")
-            self.backImageView.image = UIImage(named: "back")
-        }
-        let action4 = UIAlertAction(title: "キャンセル", style: .cancel)
-        alertController.addAction(action1)
-        alertController.addAction(action2)
-        alertController.addAction(action3)
-        alertController.addAction(action4)
-        self.present(alertController, animated: true, completion: nil)
-        
-    }
-    
 //    userDefaultsに背景画像を保存する。
     func setBackImage(selectedImage: UIImage) {
-            //NSData型にキャスト
-            let data = selectedImage.pngData()
+            let data = selectedImage.pngData() //pngに変換
             if let backImageData = data {
                 UserDefaults.standard.set(backImageData, forKey: "backImage")
-                UserDefaults.standard.synchronize()
+            } else {
+                print("setBackImageでエラーが発生。backImageDataに値が入っていません。")
             }
         }
-    //
+    
     func showImageFromUserDefaults() {
             //UserDefaultsの中身が空でないことを確認
             if UserDefaults.standard.object(forKey: "backImage") != nil {
-                print("背景画像は殻ではありません")
                 let object = UserDefaults.standard.object(forKey: "backImage")
                 backImageView.image = UIImage(data: object as! Data)
             } else {
                 backImageView.image = UIImage(named: "back")
             }
         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // /-image選択----------------------------------------------------
-    
-    
     //　背景画像を変更する　タップ
     @IBAction func tapChangeBackImage(_ sender: Any) {
         showAlert()
-    
     }
+    
+    // /-image選択----------------------------------------------------
+
     
 }

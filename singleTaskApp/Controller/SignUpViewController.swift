@@ -37,10 +37,13 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    var imageIsSelected = false
+    
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var personImageView: UIImageView!
+    @IBOutlet weak var captionLabel: UILabel!
     
     var SendToDBInstance = SendToDBModel()
     
@@ -65,7 +68,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     //新規登録
     @IBAction func signUp(_ sender: Any) {
         //emailTextFieldとかがカラ出ないということを確認
-        if emailTextField.text?.isEmpty != true && passwordTextField.text?.isEmpty != true, let image = personImageView.image{
+        if emailTextField.text?.isEmpty != true && passwordTextField.text?.isEmpty != true, let image = personImageView.image, imageIsSelected{
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
                 if error != nil{
                     print(error.debugDescription)
@@ -75,9 +78,10 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 let data = image.jpegData(compressionQuality: 1.0)
                 self.SendToDBInstance.sendProfileImageData(data: data!)
 //                ここから、データがちゃんと登録されたときだけ、画面遷移を行いたい。
-                
-    }
-    }
+                }
+        } else {
+            captionLabel.textColor = .red
+        }
     }
     
     @IBAction func tapImageView(_ sender: Any) {
@@ -118,6 +122,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
 //    カメラやアルバムで選択した時、呼ばれる。つまり画像が多分入る
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if info[.originalImage] as? UIImage != nil{
+            imageIsSelected = true
             let selectedImage = info[.originalImage] as! UIImage
             personImageView.image = selectedImage
             picker.dismiss(animated: true, completion: nil)
