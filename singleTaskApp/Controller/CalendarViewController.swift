@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var taskTextField: UITextField!
+    @IBOutlet weak var backImageView: UIImageView!
     
     var tasks:[Task] = []
     var datesWithElement:[String] = []
@@ -48,6 +49,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         todaysDate = setUpTodaysDate()
         selectedDate = todaysDate
         DispatchQueue.main.async { self.calendar.reloadData() }
+        showImageFromUserDefaults()
     }
     
 //    カレンダー関連ーーーーーーーーーーーーーーーーーーーーーーーーーーー-------
@@ -160,7 +162,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                     //ここのifを通ってない--------------------------------------------------
                     if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, let isCompleted = data["isCompleted"] as? Bool, let docID = doc.documentID as? String{
                         
-                        datesWithElement.append(data["date"] as! String)
+                        if currentUser?.uid == sender{
+                            datesWithElement.append(data["date"] as! String)
+                        }
                         print("loadDataでのdatesWithElementです↓")
                         print(datesWithElement)
                         
@@ -183,5 +187,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             }
         }
     }
+    
+    func showImageFromUserDefaults() {
+            //UserDefaultsの中身が空でないことを確認
+            if UserDefaults.standard.object(forKey: "backImage") != nil {
+                print("背景画像は殻ではありません")
+                let object = UserDefaults.standard.object(forKey: "backImage")
+                backImageView.image = UIImage(data: object as! Data)
+            } else {
+                backImageView.image = UIImage(named: "back")
+            }
+        }
 
 }

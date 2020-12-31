@@ -62,7 +62,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         passwordTextField.resignFirstResponder()
     }
     
-    //新規登録---------------------------------------------------------------------------------------
+    //新規登録
     @IBAction func signUp(_ sender: Any) {
         //emailTextFieldとかがカラ出ないということを確認
         if emailTextField.text?.isEmpty != true && passwordTextField.text?.isEmpty != true, let image = personImageView.image{
@@ -74,9 +74,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
                 //データ型にする。
                 let data = image.jpegData(compressionQuality: 1.0)
                 self.SendToDBInstance.sendProfileImageData(data: data!)
-            
 //                ここから、データがちゃんと登録されたときだけ、画面遷移を行いたい。
-                
                 
     }
     }
@@ -84,7 +82,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func tapImageView(_ sender: Any) {
         //画像選択させる
-        //アラート出す
+        //アラート出すえ
         showAlert()
     }
     

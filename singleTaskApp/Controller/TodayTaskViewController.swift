@@ -21,6 +21,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taskTextField: UITextField!
+    @IBOutlet weak var backImageView: UIImageView!
     
     var todaysDate:String?
     
@@ -44,6 +45,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillAppear(animated)
         todaysDate = setUpTodaysDate()
         print(todaysDate as Any)
+        showImageFromUserDefaults()
     }
     
     func setUpTodaysDate() -> String{
@@ -170,6 +172,15 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
-    
+    func showImageFromUserDefaults() {
+        //UserDefaultsの中身が空でないことを確認
+        if UserDefaults.standard.object(forKey: "backImage") != nil {
+            print("背景画像は殻ではありません")
+            let object = UserDefaults.standard.object(forKey: "backImage")
+            backImageView.image = UIImage(data: object as! Data)
+        } else {
+            backImageView.image = UIImage(named: "back")
+        }
+    }
     
 }

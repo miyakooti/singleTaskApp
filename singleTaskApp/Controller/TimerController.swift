@@ -3,6 +3,8 @@ import UserNotifications
 
 class TimerController: UIViewController {
     
+    @IBOutlet weak var backImageView: UIImageView!
+    
     //Timerクラスを利用する
     var timer = Timer()
     
@@ -22,6 +24,7 @@ class TimerController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showImageFromUserDefaults()
     }
     
     //タイマーをスタートさせるメソッド
@@ -75,5 +78,15 @@ class TimerController: UIViewController {
         resetTimer(Any.self)
     }
     
+    func showImageFromUserDefaults() {
+            //UserDefaultsの中身が空でないことを確認
+            if UserDefaults.standard.object(forKey: "backImage") != nil {
+                print("背景画像は殻ではありません")
+                let object = UserDefaults.standard.object(forKey: "backImage")
+                backImageView.image = UIImage(data: object as! Data)
+            } else {
+                backImageView.image = UIImage(named: "back")
+            }
+        }
     
     }
