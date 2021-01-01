@@ -41,15 +41,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         tableView.dataSource = self
         taskTextField.delegate = self
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
-        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         todaysDate = setUpTodaysDate()
         selectedDate = todaysDate
+        loadData()
         DispatchQueue.main.async { self.calendar.reloadData() }
         showImageFromUserDefaults()
+        self.tableView.reloadData()
     }
     
 //    カレンダー関連ーーーーーーーーーーーーーーーーーーーーーーーーーーー-------
@@ -58,10 +59,19 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         let tmpDate = Calendar(identifier: .gregorian)
-        let year = tmpDate.component(.year, from: date)
-        let month = tmpDate.component(.month, from: date)
-        let day = tmpDate.component(.day, from: date)
-        selectedDate = "\(year)/\(month)/\(day)"
+        var yearString = String(tmpDate.component(.year, from: date))
+        var monthString = String(tmpDate.component(.month, from: date))
+        var dayString = String(tmpDate.component(.day, from: date))
+        
+        // 1の位は01,02,09というふうにしたい。
+        if monthString.count == 1{
+            monthString = "0"+monthString
+        }
+        if dayString.count == 1{
+            dayString = "0"+dayString
+        }
+
+        selectedDate = "\(yearString)/\(monthString)/\(dayString)"
         tasks.removeAll()
         self.loadData()
         //tableviewをリロードします。
@@ -70,8 +80,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         let dateString = stringDateConverter.dateToString(date: date, format: "yyyy/MM/dd") as String?
-           print("calendarでのdateWithElementです")
-           print(datesWithElement)
+//           print("calendarでのdateWithElementです")
+//           print(datesWithElement)
            if datesWithElement.contains(dateString!){
                return 1
            }
@@ -165,13 +175,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                         if currentUser?.uid == sender{
                             datesWithElement.append(data["date"] as! String)
                         }
-                        print("loadDataでのdatesWithElementです↓")
-                        print(datesWithElement)
                         
                         if currentUser?.uid == sender, selectedDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
                             let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted, documentID: docID)
-                            print("aaa")
                             //tasksリストにappendする。
                             self.tasks.append(newTask)
                             //dispatchQueueはfor分の外に出しました。

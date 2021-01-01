@@ -38,14 +38,14 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         taskTextField.delegate = self
         //カスタムセル登録
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
-        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         todaysDate = setUpTodaysDate()
-        print(todaysDate as Any)
         showImageFromUserDefaults()
+        loadData()
+        self.tableView.reloadData()
     }
     
     func setUpTodaysDate() -> String{
@@ -146,6 +146,9 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
                     let data = doc.data()
 
                     if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, var isCompleted = data["isCompleted"] as? Bool, let docID = doc.documentID as String?{
+                        print(todaysDate)
+                        print("++++++++")
+                        print(data["date"])
                         
                         if currentUser?.uid == sender, todaysDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
