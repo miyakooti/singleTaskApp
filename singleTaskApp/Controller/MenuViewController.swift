@@ -114,11 +114,11 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     //アラートコントローラの作成。
     func showAlert(){
-        let alertController = UIAlertController(title: "背景画像の選択", message: "背景画像を選択する方法を選んでください。", preferredStyle: .actionSheet)
-        let action1 = UIAlertAction(title: "カメラ", style: .default) { (alert) in
+        let alertController = UIAlertController(title: "背景画像の変更", message: "背景画像を変更する方法を選んでください。", preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "写真を取る", style: .default) { (alert) in
             self.doCamera()
         }
-        let action2 = UIAlertAction(title: "アルバム", style: .default) { (alert) in
+        let action2 = UIAlertAction(title: "アルバムから選ぶ", style: .default) { (alert) in
             self.doAlbum()
         }
         let action3 = UIAlertAction(title: "デフォルト画像に戻す", style: .default) { (alert) in
