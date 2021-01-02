@@ -23,11 +23,11 @@ class TimerController: UIViewController {
         super.viewDidLoad()
         clockBackView.layer.cornerRadius = 30.0
         setUpTimer()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showImageFromUserDefaults()
+        self.parent?.navigationItem.title = "Timer"
     }
     
     //タイマーをスタートさせるメソッド

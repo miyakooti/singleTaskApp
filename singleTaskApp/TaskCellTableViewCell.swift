@@ -22,7 +22,7 @@ class TaskCellTableViewCell: UITableViewCell {
     @IBOutlet weak var checkButton: UIButton!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var label: UILabel!
-    var index:Int?
+    var index:Int? // VCでここにIndexが入る
     var documentID:String?
     var isCompleted = false
     
@@ -55,7 +55,6 @@ class TaskCellTableViewCell: UITableViewCell {
         } else {
             docRef.updateData(["isCompleted": true])
             soundFile.playSound(fileName: "completeSound", extensionName: "mp3")
-
         }
         delegate?.loadData() //protocolを記述したことによって、他のクラスのメソッドが利用可能になる。（他のクラスで処理をする事ができる。）
         

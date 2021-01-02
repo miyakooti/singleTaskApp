@@ -46,12 +46,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.parent?.navigationItem.title = "Calendar"
         todaysDate = setUpTodaysDate()
         selectedDate = todaysDate
         loadData()
         DispatchQueue.main.async { self.calendar.reloadData() }
         showImageFromUserDefaults()
         self.tableView.reloadData()
+        
     }
     
 //    カレンダー関連ーーーーーーーーーーーーーーーーーーーーーーーーーーー-------
@@ -134,9 +136,34 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         false //ハイライトしない
     }
+    
+    //スワイプしたセルを削除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            let task = tasks[indexPath.row]
+            //ローカルのデータを削除処理
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            //リモートのデータを削除する処理
+//            let task = tasks[indexPath.row]　ここにindexPathを定義してしまうと、ローカルで削除されたあとに定義することになるので、indexPathがずれてエラーになる。
+            db.collection("Tasks").document(task.documentID).delete(){ error in
+                if error != nil {
+                    let error = error
+                    print("削除失敗。内容：\(error.debugDescription)")
+                    } else {
+                        print("削除成功")
+                }
+            }
+        }
+    }
 //    /tableview---------------------------------------------------------------------------
     
-
+    //エンター押したら確定
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        taskTextField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func pushSend(_ sender: Any) {
         self.send(sender)
     }
@@ -155,7 +182,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                     self.taskTextField.text = ""
                     self.taskTextField.resignFirstResponder()
                     self.calendar.reloadData()
-
                 }
             }
         }

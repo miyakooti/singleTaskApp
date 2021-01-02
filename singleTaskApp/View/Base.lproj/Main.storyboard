@@ -74,6 +74,8 @@
                     <tabBarItem key="tabBarItem" title="today" image="checkmark.square" catalog="system" id="Rzh-Fl-JEL"/>
                     <connections>
                         <outlet property="backImageView" destination="SvL-Om-oge" id="Avr-QV-CV0"/>
+                        <outlet property="navigationBar" destination="4sl-11-H15" id="CSk-xf-ZV7"/>
+                        <outlet property="navigationTitle" destination="okl-JT-xlV" id="YrT-Du-PdE"/>
                         <outlet property="tableView" destination="egw-YB-iiY" id="0iC-WO-k1B"/>
                         <outlet property="taskTextField" destination="ORg-y0-WbT" id="Ls6-CC-aog"/>
                     </connections>
@@ -99,10 +101,12 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QyW-FX-RcZ" customClass="FSCalendar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QyW-FX-RcZ" customClass="FSCalendar">
                                 <rect key="frame" x="0.0" y="88" width="414" height="295"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="0.3654216609589041" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="295" id="Tyc-k3-dFi"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="scrollEnabled" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="pagingEnabled" value="YES"/>
@@ -174,6 +178,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="REf-XX-qCm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QyW-FX-RcZ" firstAttribute="leading" secondItem="REf-XX-qCm" secondAttribute="leading" id="In9-39-y2s"/>
+                            <constraint firstItem="QyW-FX-RcZ" firstAttribute="trailing" secondItem="REf-XX-qCm" secondAttribute="trailing" id="SUO-zh-84E"/>
+                            <constraint firstItem="QyW-FX-RcZ" firstAttribute="top" secondItem="REf-XX-qCm" secondAttribute="top" id="efq-fs-VsX"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="calendar" image="calendar" catalog="system" landscapeImage="calendar" id="dsW-9X-VcU"/>
                     <connections>
@@ -199,7 +208,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view alpha="0.34999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fUa-go-4sU">
+                            <view alpha="0.45000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fUa-go-4sU">
                                 <rect key="frame" x="57" y="160" width="307" height="152"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -576,7 +585,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="oDV-oJ-jQQ"/>
+        <segue reference="j87-rB-I1T"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="add" width="48" height="48"/>

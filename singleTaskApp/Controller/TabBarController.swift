@@ -23,8 +23,9 @@ class TabBarController: UITabBarController {
         self.tabBar.barTintColor = UIColor(red: 0/255, green: 26/255, blue: 67/255, alpha: 1.0)
         self.tabBar.tintColor = .white
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 26/255, blue: 67/255, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = .white
         
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white] //navigationBarのタイトルの色を変更する。
+
 
     }
     

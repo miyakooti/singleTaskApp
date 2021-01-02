@@ -22,6 +22,8 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var navigationTitle: UINavigationItem!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
     var todaysDate:String?
     
@@ -38,10 +40,12 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         taskTextField.delegate = self
         //カスタムセル登録
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.parent?.navigationItem.title = "Today" //親クラスのプロパティを変更するには、parentが必要です！
         todaysDate = setUpTodaysDate()
         showImageFromUserDefaults()
         loadData()
@@ -50,7 +54,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func setUpTodaysDate() -> String{
         // 現在日時を取得
-        var date = Date()
+        let date = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
         print(formatter.string(from: date))
@@ -96,19 +100,41 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         false //ハイライトしない
     }
     
+    //削除処理を許可
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TaskCellTableViewCell
-//
-//        if tasks[indexPath.row].isCompleted == false{
-//            tasks[indexPath.row].isCompleted = true
-//        } else {
-//            tasks[indexPath.row].isCompleted = false
-//        }
-//
-//    }
+    //スワイプしたセルを削除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            let task = tasks[indexPath.row]
+            //ローカルのデータを削除処理
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            //リモートのデータを削除する処理
+//            let task = tasks[indexPath.row]　ここにindexPathを定義してしまうと、ローカルで削除されたあとに定義することになるので、indexPathがずれてエラーになる。
+            db.collection("Tasks").document(task.documentID).delete(){ error in
+                if error != nil {
+                    let error = error
+                    print("削除失敗。内容：\(error.debugDescription)")
+                    } else {
+                        print("削除成功")
+                }
+            }
+        }
+    }
+    
+    
 
     //--------------------------------------------------------------------------------
+    
+    //エンター押したら確定
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        taskTextField.resignFirstResponder()
+        return true
+    }
     
     @IBAction func pushSend(_ sender: Any) {
         self.send((Any).self)
@@ -121,16 +147,13 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
             soundFile.playSound(fileName: "addSound", extensionName: "mp3")
             
             db.collection("Tasks").addDocument(data: ["sender":sender, "body":taskBody as Any, "date":todaysDate as Any, "isCompleted":false]) { (error) in
-                
                 if error != nil{
                     print(error.debugDescription)
                     return
                 }
-                
                 DispatchQueue.main.async { //非同期処理　通信が重かった時とか、ローカルで処理する。
                     self.taskTextField.text = ""
                     self.taskTextField.resignFirstResponder()
-
                 }
             }
         }
@@ -150,14 +173,13 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
                     let data = doc.data()
 
                     if let sender = data["sender"] as? String, let body = data["body"] as? String, let date = data["date"] as? String, var isCompleted = data["isCompleted"] as? Bool, let docID = doc.documentID as String?{
-                        print(todaysDate)
-                        print("++++++++")
-                        print(data["date"])
+//                        print(todaysDate)
+//                        print("++++++++")
+//                        print(data["date"])
                         
                         if currentUser?.uid == sender, todaysDate == (data["date"] as! String){
                             //新しいインスタンスを作成します。
                             let newTask = Task(sender: sender, body: body, date: date, isCompleted: isCompleted, documentID: docID)
-                            print("aaa")
                             
                             //tasksリストにappendする。
                             self.tasks.append(newTask)
@@ -165,7 +187,6 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
                             //dispatchQueueはfor分の外に出しました。
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
-                                print(self.tasks.count)
                                 let indexPath = IndexPath(row: self.tasks.count - 1, section: 0)
                                 self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                             

@@ -13,6 +13,6 @@ struct Task {
     let body:String
     let date:String
     var isCompleted:Bool
-    let documentID:String
+    let documentID:String //これ便利！！！
     
 }

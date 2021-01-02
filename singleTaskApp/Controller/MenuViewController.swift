@@ -35,15 +35,13 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             print("画像がuserDefaultsに保存されていません。ここからuserDefaultsへの登録を開始します。")
             loadImage()
         }
-        
-        
         showImage(imageString: imageString) //画像を反映させる
         greeting() //こんにちは。メールアドレスさん
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showImageFromUserDefaults()
+        self.parent?.navigationItem.title = "Menu"
     }
     
     private func greeting(){
