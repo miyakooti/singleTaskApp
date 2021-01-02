@@ -41,6 +41,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         tableView.dataSource = self
         taskTextField.delegate = self
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
+        tableView.separatorStyle = .none //罫線
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,6 +130,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             cell.checkButton.setImage(UIImage(named: "checked"), for: .normal)
         }
         return cell
+    }
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        false //ハイライトしない
     }
 //    /tableview---------------------------------------------------------------------------
     

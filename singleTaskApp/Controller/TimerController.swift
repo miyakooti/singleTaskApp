@@ -4,6 +4,7 @@ import UserNotifications
 class TimerController: UIViewController {
     
     @IBOutlet weak var backImageView: UIImageView!
+    @IBOutlet weak var clockBackView: UIView!
     
     //Timerクラスを利用する
     var timer = Timer()
@@ -20,7 +21,9 @@ class TimerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        clockBackView.layer.cornerRadius = 30.0
         setUpTimer()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
