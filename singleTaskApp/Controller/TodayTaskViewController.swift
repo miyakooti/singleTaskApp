@@ -9,7 +9,7 @@
 //メモ：タップ処理
 //まずdidselectrowatでindexpathを指定
 //そのあと、そのindexpathを利用して、そのindexpathをもつデータをfirebase上で指定して、
-//その値を変更して、loaddataをすれば良い気がする。
+//その値を変更して、loaddataをすれば良い気がする。あああ
 
 
 import UIKit
@@ -40,7 +40,6 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         taskTextField.delegate = self
         //カスタムセル登録
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
