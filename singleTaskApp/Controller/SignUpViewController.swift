@@ -56,7 +56,6 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         SendToDBInstance.sendProfileOKDelegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
-        
     }
     
     //タッチしたらキーボード閉じる

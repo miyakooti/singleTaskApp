@@ -17,7 +17,6 @@ class LetsStartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
         
         
         //この時点でuserdefaultsに保存されているはず

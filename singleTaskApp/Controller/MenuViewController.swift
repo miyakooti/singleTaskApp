@@ -12,22 +12,29 @@ import Firebase
 import FirebaseAuth
 import SDWebImage
 
-class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+
+    
 
     let currentUserInstance = Auth.auth().currentUser
     let db = Firestore.firestore()
         
     var saveArray: Array! = [NSData]()
     var imageString = String()
+    
+    let menuCellLabels = ["背景画像を変更する","ログアウト"]
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var backImageView: UIImageView!
-    @IBOutlet weak var testBackImageView: UIImageView!
-        
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationItem.title = "menu"
+        tableView.delegate = self
+        tableView.dataSource = self
         if UserDefaults.standard.object(forKey: "userImage") != nil{
             imageString = UserDefaults.standard.object(forKey: "userImage") as! String
         } else{
@@ -42,6 +49,33 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewWillAppear(animated)
         showImageFromUserDefaults()
         self.parent?.navigationItem.title = "Menu"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return menuCellLabels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell")
+        let label = cell?.viewWithTag(1) as! UILabel
+        label.text = "　　"+menuCellLabels[indexPath.row]
+        if menuCellLabels[indexPath.row] == "ログアウト" {
+            label.textColor = .red
+        }
+        return cell!
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            tapChangeBackImage(self)
+        case 1:
+            dispLogoutAlert(self)
+        default:
+            print("didSelectRowAtでエラーが発生")
+        }
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     private func greeting(){

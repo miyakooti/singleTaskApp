@@ -16,15 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="uXy-jd-12x">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="uXy-jd-12x">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="singleTaskAppで、生産的な毎日を" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5h-Jk-9eq">
-                                <rect key="frame" x="0.0" y="354" width="414" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="singleTaskAppで、生産的な毎日を" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5h-Jk-9eq">
+                                <rect key="frame" x="0.0" y="354" width="414" height="65"/>
                                 <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="VOJ-nP-bnz"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -33,6 +34,15 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="E5h-Jk-9eq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="4XG-by-WII"/>
+                            <constraint firstItem="uXy-jd-12x" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Lnt-5f-rPd"/>
+                            <constraint firstItem="E5h-Jk-9eq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZMD-Uu-poR"/>
+                            <constraint firstItem="E5h-Jk-9eq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="310" id="lwi-ah-Wb8"/>
+                            <constraint firstItem="uXy-jd-12x" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ohF-9H-oLN"/>
+                            <constraint firstItem="uXy-jd-12x" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="psL-Dx-iTi"/>
+                            <constraint firstAttribute="bottom" secondItem="uXy-jd-12x" secondAttribute="bottom" id="w6x-se-Zwt"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
