@@ -371,8 +371,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ここに機能名が入ります。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihg-WL-lss">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ここに機能名が入ります。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ihg-WL-lss">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="98"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="98" id="wJf-Gt-Kaq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -380,6 +383,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ihg-WL-lss" firstAttribute="centerY" secondItem="jDc-Te-3Xc" secondAttribute="centerY" id="1Q7-0t-KWI"/>
+                                                <constraint firstItem="Ihg-WL-lss" firstAttribute="top" secondItem="jDc-Te-3Xc" secondAttribute="topMargin" constant="-11" id="7ZP-bz-t3f"/>
+                                                <constraint firstItem="Ihg-WL-lss" firstAttribute="leading" secondItem="jDc-Te-3Xc" secondAttribute="leadingMargin" constant="-20" id="87R-Mb-5Pt"/>
+                                                <constraint firstItem="Ihg-WL-lss" firstAttribute="centerX" secondItem="jDc-Te-3Xc" secondAttribute="centerX" id="R3z-Eg-7nK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -511,7 +517,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="4To-hd-0es">
-                                <rect key="frame" x="0.0" y="0.0" width="416" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XSc-4n-fbZ">
                                 <rect key="frame" x="46" y="585" width="324" height="34"/>
@@ -594,7 +600,6 @@
                             <constraint firstItem="XSc-4n-fbZ" firstAttribute="centerX" secondItem="4h9-uC-zh3" secondAttribute="centerX" id="FLz-ir-BKg"/>
                             <constraint firstItem="j6G-Gs-B0F" firstAttribute="top" secondItem="FIu-bh-e5f" secondAttribute="top" constant="30" id="Jb1-Gm-agw"/>
                             <constraint firstItem="luH-yN-q2H" firstAttribute="top" secondItem="kIj-kX-f3H" secondAttribute="bottom" constant="45" id="Jlj-1q-iIk"/>
-                            <constraint firstItem="4To-hd-0es" firstAttribute="centerX" secondItem="XSc-4n-fbZ" secondAttribute="centerX" id="KCx-SP-O40"/>
                             <constraint firstItem="kIj-kX-f3H" firstAttribute="centerX" secondItem="D0W-oh-P5L" secondAttribute="centerX" id="L6x-3F-g5b"/>
                             <constraint firstItem="kIj-kX-f3H" firstAttribute="trailing" secondItem="luH-yN-q2H" secondAttribute="trailing" id="Zva-UN-bqA"/>
                             <constraint firstItem="D0W-oh-P5L" firstAttribute="top" secondItem="XSc-4n-fbZ" secondAttribute="bottom" constant="72" id="coh-uN-zpA"/>

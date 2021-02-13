@@ -47,6 +47,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         self.parent?.navigationItem.title = "Today" //親クラスのプロパティを変更するには、parentが必要です！
         todaysDate = setUpTodaysDate()
         showImageFromUserDefaults()
+        print("aaaaaaaaaaaaaaaaaa")
         loadData()
         self.tableView.reloadData()
     }

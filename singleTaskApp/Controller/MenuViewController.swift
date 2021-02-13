@@ -215,20 +215,26 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
 //    userDefaultsに背景画像を保存する。
     func setBackImage(selectedImage: UIImage) {
+        print("setbackimageです。")
             let data = selectedImage.pngData() //pngに変換
             if let backImageData = data {
                 UserDefaults.standard.set(backImageData, forKey: "backImage")
+                print("保存されました。")
             } else {
                 print("setBackImageでエラーが発生。backImageDataに値が入っていません。")
             }
         }
     
     func showImageFromUserDefaults() {
+        
             //UserDefaultsの中身が空でないことを確認
             if UserDefaults.standard.object(forKey: "backImage") != nil {
                 let object = UserDefaults.standard.object(forKey: "backImage")
+                print("userdefaultsは殻ではありません、")
                 backImageView.image = UIImage(data: object as! Data)
             } else {
+                print("userdefaultsは殻です")
+
                 backImageView.image = UIImage(named: "back")
             }
         }
