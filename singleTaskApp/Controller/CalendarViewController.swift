@@ -42,6 +42,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         taskTextField.delegate = self
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
         tableView.separatorStyle = .none //罫線
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -214,9 +215,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                             //dispatchQueueはfor分の外に出しました。
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
-                                print(self.tasks.count)
-                                let indexPath = IndexPath(row: self.tasks.count - 1, section: 0)
-                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+//                                let indexPath = IndexPath(row: self.tasks.count - 1, section: 0)
+//                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                             }
                         }
                     }

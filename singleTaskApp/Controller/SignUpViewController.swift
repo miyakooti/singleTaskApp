@@ -56,6 +56,7 @@ class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, U
         SendToDBInstance.sendProfileOKDelegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     //タッチしたらキーボード閉じる

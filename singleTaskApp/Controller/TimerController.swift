@@ -23,11 +23,19 @@ class TimerController: UIViewController {
         super.viewDidLoad()
         clockBackView.layer.cornerRadius = 30.0
         setUpTimer()
+        self.navigationController?.isNavigationBarHidden = false
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showImageFromUserDefaults()
         self.parent?.navigationItem.title = "Timer"
+        if let newLimit = UserDefaults.standard.object(forKey: "timerSetting"){
+            if newLimit as! Int != limit{
+                limit = newLimit as! Int
+                timer.invalidate()
+                setUpTimer()
+            }
+        }
     }
     
     //タイマーをスタートさせるメソッド
@@ -43,16 +51,31 @@ class TimerController: UIViewController {
             minutes -= 1
             seconds = 59
         }
+        
+//        アラームが終わったとき
         if minutes == 0 && seconds == 0{
             resetTimer((Any).self)
+            
+//            アラートを作成する
+            let alertcontroller = UIAlertController(title:"タイマーが終了しました", message: "お疲れさまでした！", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil )
+            alertcontroller.addAction(defaultAction)
+            
+//            アラートを表示する
+            present(alertcontroller, animated: true, completion: nil)
+            
         }
         if seconds < 10 {
             secondLabel.text = String("0\(seconds)")
         } else {
             secondLabel.text = String(seconds)
         }
-        minuteLabel.text = String(minutes)
-        
+        if minutes < 10 {
+            minuteLabel.text = String("0\(minutes)")
+        } else {
+            minuteLabel.text = String(minutes)
+        }
+
     }
     
     func setUpTimer() {
@@ -63,7 +86,11 @@ class TimerController: UIViewController {
         } else {
             secondLabel.text = String(seconds)
         }
-        minuteLabel.text = String(minutes)
+        if minutes < 10 {
+            minuteLabel.text = String("0\(minutes)")
+        } else {
+            minuteLabel.text = String(minutes)
+        }
     }
     
     //リセットボタン

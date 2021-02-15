@@ -12,9 +12,28 @@ import Firebase
 import FirebaseAuth
 import SDWebImage
 
-class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+extension UIImage {
+    func resized(withPercentage percentage: CGFloat, isOpaque: Bool = true) -> UIImage? {
+        let canvas = CGSize(width: size.width * percentage, height: size.height * percentage)
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: canvas, format: format).image {
+            _ in draw(in: CGRect(origin: .zero, size: canvas))
+        }
+    }
+    func resized(toWidth width: CGFloat, isOpaque: Bool = true) -> UIImage? {
+        let canvas = CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))
+        let format = imageRendererFormat
+        format.opaque = isOpaque
+        return UIGraphicsImageRenderer(size: canvas, format: format).image {
+            _ in draw(in: CGRect(origin: .zero, size: canvas))
+        }
+    }
+}
 
+class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
+
 
     let currentUserInstance = Auth.auth().currentUser
     let db = Firestore.firestore()
@@ -22,7 +41,7 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var saveArray: Array! = [NSData]()
     var imageString = String()
     
-    let menuCellLabels = ["背景画像を変更する","ログアウト"]
+    let menuCellLabels = ["背景画像を変更する","タイマーの時間を変更する","ログアウト"]
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var greetingLabel: UILabel!
@@ -42,8 +61,10 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             print("画像がuserDefaultsに保存されていません。ここからuserDefaultsへの登録を開始します。")
             loadImage()
         }
+        self.navigationController?.isNavigationBarHidden = false
         showImage(imageString: imageString) //画像を反映させる
         greeting() //こんにちは。メールアドレスさん
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -58,7 +79,7 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menuCell")
         let label = cell?.viewWithTag(1) as! UILabel
-        label.text = "　　"+menuCellLabels[indexPath.row]
+        label.text = " "+menuCellLabels[indexPath.row]
         if menuCellLabels[indexPath.row] == "ログアウト" {
             label.textColor = .red
         }
@@ -69,6 +90,8 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         case 0:
             tapChangeBackImage(self)
         case 1:
+            self.performSegue(withIdentifier: "goToTimerSetting", sender: nil)
+        case 2:
             dispLogoutAlert(self)
         default:
             print("didSelectRowAtでエラーが発生")
@@ -146,7 +169,7 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     //アラートコントローラの作成。
     func showAlert(){
-        let alertController = UIAlertController(title: "背景画像の変更", message: "背景画像を変更する方法を選んでください。", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "背景画像の変更", message: "背景画像を変更する方法を選んでください。（画像サイズが大きすぎると、設定できない可能性があります。）", preferredStyle: .actionSheet)
         let action1 = UIAlertAction(title: "写真を取る", style: .default) { (alert) in
             self.doCamera()
         }
@@ -205,7 +228,10 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             let selectedImage = info[.originalImage] as! UIImage
             //この部分が新規登録画面と違うところ。ローカルにある背景画像を更新する。
             
-            setBackImage(selectedImage: selectedImage) //画像をローカルに保存して、
+            
+//            画像が大きすぎるとUserDefaultsに保存することができなかったので、ここでstackOverFlowの力を借りて、一番上のextentionの記述により、データをリサイズすることに成功しました。
+            let compressedImage = selectedImage.resized(withPercentage: 0.6)
+            setBackImage(selectedImage: compressedImage!) //画像をローカルに保存して、
             showImageFromUserDefaults() //それを反映させます！
             
             
@@ -217,6 +243,7 @@ class MenuViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func setBackImage(selectedImage: UIImage) {
         print("setbackimageです。")
             let data = selectedImage.pngData() //pngに変換
+
             if let backImageData = data {
                 UserDefaults.standard.set(backImageData, forKey: "backImage")
                 print("保存されました。")

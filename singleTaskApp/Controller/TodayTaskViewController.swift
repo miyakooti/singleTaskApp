@@ -40,6 +40,7 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
         taskTextField.delegate = self
         //カスタムセル登録
         tableView.register(UINib(nibName: "TaskCellTableViewCell", bundle:nil), forCellReuseIdentifier: "Cell")
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,8 +191,8 @@ class TodayTaskViewController: UIViewController, UITableViewDelegate, UITableVie
                             //dispatchQueueはfor分の外に出しました。
                             DispatchQueue.main.async {
                                 self.tableView.reloadData()
-                                let indexPath = IndexPath(row: self.tasks.count - 1, section: 0)
-                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+//                                let indexPath = IndexPath(row: self.tasks.count - 1, section: 0)
+//                                self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                             
                             }
                         }
